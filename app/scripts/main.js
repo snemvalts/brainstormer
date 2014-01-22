@@ -2,8 +2,10 @@ var app = {};
 $(document).ready(function(){
 	app.startButton = $("#startButton");
 	app.timer = $("#timer")
+	app.inputBox = $("#ideaInput")
 	app.secondCounter = 0;
 	app.minuteCounter = 0;
+	app.ideas = [];
 	app.init = function(){
 		app.timer.toggle();
 		window.setInterval(function(){
@@ -24,7 +26,10 @@ $(document).ready(function(){
 	app.inputManager = function(keypress){
 		console.log(keypress.which)
 		if(keypress.which == 13){
-			console.log("enter has been pressed")
+			console.log("enter has been pressed");
+			app.ideas.push(app.inputBox.val());
+			app.inputBox.val("")
+			console.log(app.ideas);
 		}
 	}
 	$("#startButton").click(function(){
