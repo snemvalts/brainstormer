@@ -30,7 +30,11 @@ $(document).ready(function(){
 			app.ideas.push(app.inputBox.val());
 			app.inputBox.val("")
 			console.log(app.ideas);
+			app.ideaAppender();
 		}
+	}
+	app.ideaAppender = function(){
+		$(".jumbotron").append(app.ideas[app.ideas.length-1]+"<br>")
 	}
 	$("#startButton").click(function(){
 		//set visibility:hidden to every element inside jumbotron
