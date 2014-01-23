@@ -6,9 +6,10 @@ $(document).ready(function(){
 	app.secondCounter = 0;
 	app.minuteCounter = 0;
 	app.ideas = [];
+	app.interval
 	app.init = function(){
 		app.timer.toggle();
-		window.setInterval(function(){
+		app.interval = window.setInterval(function(){
 			if(app.secondCounter === 59){
 				//set to -1, because nevertheless it will increment it(we want 01:00)
 				app.secondCounter = -1;
@@ -34,7 +35,7 @@ $(document).ready(function(){
 		}
 	}
 	app.ideaAppender = function(){
-		$(".jumbotron").append(app.ideas[app.ideas.length-1]+"<br>")
+		$(".jumbotron").append("<p class='idea'>"+app.ideas[app.ideas.length-1]+"</p>")
 	}
 	$("#startButton").click(function(){
 		//set visibility:hidden to every element inside jumbotron
@@ -43,6 +44,12 @@ $(document).ready(function(){
 		})
 		app.init();
 	});
+	$("#endButton").click(function(){
+		$(this).toggle();
+		app.inputBox.toggle();
+		app.timer.toggle();
+		window.clearInterval(app.interval);
+	})
 	$("#ideaInput").keypress(function(keypress){
 		app.inputManager(keypress)
 	});
